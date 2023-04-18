@@ -10,21 +10,7 @@ from torch.utils.tensorboard import SummaryWriter
 
 from constants import *
 from model import *
-
-
-def get_run_directory(runs_dir):
-    """
-    Runs are runs_dir/000, /001, ...
-    """
-    max_num = None
-    for run in os.listdir(runs_dir):
-        if run.isdigit():
-            num = int(run)
-            if max_num is None or num > max_num:
-                max_num = num
-    if max_num is None:
-        max_num = -1
-    return os.path.join(runs_dir, f"{max_num+1:03d}")
+from utils import *
 
 
 def forward_batch(loader, model, criterion, scheduler, epoch: int, train: bool):
@@ -84,7 +70,7 @@ def train(model, dataset, logdir):
             avg_loss = total_loss / len(test_loader)
             log.add_scalar("Test loss", avg_loss, step)
 
-        torch.save(model.state_dict(), os.path.join(logdir, f"epoch{epoch+1}.pt"))
+        torch.save(model.state_dict(), os.path.join(logdir, f"epoch.{epoch+1}.pt"))
 
     log.close()
 
