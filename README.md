@@ -1,2 +1,1 @@
-# pytorch_template
-Template for Pytorch projects.
+# Torch Template
