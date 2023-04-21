@@ -11,7 +11,7 @@ class MyDataset(Dataset):
     def __init__(self, directory):
         pass
 
-    def __len__(self):
+    def __len__(self) -> int:
         pass
 
     def __getitem__(self, idx):

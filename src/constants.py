@@ -6,7 +6,8 @@ DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 # Training parameters
 BATCH_SIZE = 64
+BATCH_PER_STEP = 1
 EPOCHS = 5
-LR = 1e-3
-LR_DECAY_FAC = 0.9
-LR_DECAY_STEPS = 5000
+SAVE_INTERVAL = 5
+LR_START = 1e-3
+LR_END = 1e-5
