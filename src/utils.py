@@ -12,7 +12,7 @@ def create_parser():
     parser = argparse.ArgumentParser()
     parser.add_argument("--data", default="data", help="Path to data directory")
     parser.add_argument("--runs", default="runs", help="Path to tensorboard runs directory")
-    parser.add_argument("--name", default="", help="Run name prefix.")
+    parser.add_argument("--name", default="run", help="Run name prefix.")
     return parser
 
 
