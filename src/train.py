@@ -50,7 +50,10 @@ def create_logdir(logdir):
     shutil.copyfile(os.path.join(ROOT, "constants.py"), os.path.join(logdir, "constants.py"))
 
     # Copy commit hash
-    commit = check_output(["git", "rev-parse", "HEAD"]).decode("utf-8").strip()
+    try:
+        commit = check_output(["git", "rev-parse", "HEAD"]).decode("utf-8").strip()
+    except CalledProcessError:
+        commit = "Unknown"
     with open(os.path.join(logdir, "commit.txt"), "w") as f:
         f.write(commit)
         f.write("\n")
@@ -72,6 +75,7 @@ def train(model, dataset, logdir, args):
     print(f"Train set: {len(train_dataset)} batches")
     print(f"Test set: {len(test_dataset)} batches")
 
+    # TODO loss and optim
     criterion = torch.nn.BCELoss()
     optim = torch.optim.Adam(model.parameters(), lr=LR_START)
     lr_decay_fac = (LR_END / LR_START) ** (1 / EPOCHS)
