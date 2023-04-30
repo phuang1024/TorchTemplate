@@ -22,11 +22,11 @@ def forward_batch(loader, model, criterion, scheduler, epoch: int, train: bool):
     """
     name = "Train" if train else "Test"
     pbar = tqdm(enumerate(loader), total=len(loader), desc=name)
+    # TODO: Custom forward pass code
     for i, (x, y) in pbar:
         x, y = x.to(DEVICE), y.to(DEVICE)
         pred = model(x)
         loss = criterion(pred, y)
-        # TODO: Custom training stuff
 
         lr = scheduler.get_last_lr()[0]
         pbar.set_description(
